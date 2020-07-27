@@ -1,5 +1,6 @@
 const express = require('express');
 const router =  express.Router();
+const Bulb = require('../models/bulb');
 
 //get a list of bulbs from the database
 router.get('/', (req, res) => {
@@ -9,13 +10,14 @@ router.get('/', (req, res) => {
 
 //add a new bulb to the database
 router.post('/', (req, res) => {
-    console.log(req.body);
-    res.send({
-        type : 'POST',
-        bulb_id : req.body.bulb_id,
-        room : req.body.room
+    console.log(req.body)
+    Bulb.create(req.body).then((bulb) => {
 
-});
+        res.send(bulb);
+
+    });
+
+    
 });
 
 //update a ninja in the database
