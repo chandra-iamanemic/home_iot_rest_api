@@ -12,6 +12,8 @@ mongoose.connect('mongodb+srv://sadlagger:mirana@123@jsapi.0xwpi.azure.mongodb.n
     });
 
 //body parser middleware
+app.use(express.static('public'));
+
 app.use(bodyParser.json())
 
 //Bulb Router

@@ -5,7 +5,14 @@ const Bulb = require('../models/Bulb');
 //get a list of bulbs from the database
 router.get('/', (req, res) => {
     
-    res.send({type : 'GET'});
+    Bulb.find({room : req.query.room})
+    .then(data => {
+        res.json(data);
+    })
+    .catch(err => {
+        res.json({message : err});
+    });
+    
 });
 
 //add a new bulb to the database
@@ -30,7 +37,17 @@ router.post('/', (req, res) => {
 //update a ninja in the database
 router.put('/:id', (req, res) => {
     
-    res.send({type : 'PUT'});
+    Bulb.findByIdAndUpdate({_id: req.params.id}, req.body)
+    .then(() => {
+        Bulb.findOne({_id: req.params.id})
+        .then((data) => {
+            res.send(data);
+        });
+
+    })
+    .catch(err => {
+        res.json({message : err});
+    });
 });
 
 //delete a bulb from the database
