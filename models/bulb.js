@@ -15,6 +15,6 @@ const BulbSchema = new Schema({
     }
 });
 
-const Bulb = mongoose.model('bulb', BulbSchema);
+const Bulb = mongoose.model('bulbs', BulbSchema);
 
 module.exports = Bulb;

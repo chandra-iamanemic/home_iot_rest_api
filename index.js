@@ -5,7 +5,11 @@ const mongoose = require('mongoose');
 const app = express();
 
 //connect to mongodb database
-mongoose.connect('mongodb+srv://sadlagger:mirana@123@jsapi.0xwpi.azure.mongodb.net/bulbs?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://sadlagger:mirana@123@jsapi.0xwpi.azure.mongodb.net/bulbs?retryWrites=true&w=majority', 
+    { useNewUrlParser: true },
+    () => {
+        console.log('connected to DB')
+    });
 
 //body parser middleware
 app.use(bodyParser.json())
